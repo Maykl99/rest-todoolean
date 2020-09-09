@@ -1,42 +1,25 @@
 $(function(){
     read();
     
-    $(document).on('click','span.delete',function(){
+    $(document).on('click','span.delete',function(){ // al click preleva l'id dell'elemento selezionato
        let idElemento= $(this).parent().attr('data-id');
-       deleteElement(idElemento);
+       deleteElement(idElemento); // passa l'id come parametro alla fuzione elimina
     });
 
-    $('#passaggioValore').on('click', function(){
+    $('#passaggioValore').on('click', function(){ // al click preleva il valore dal campo di input
         let val=$('input#valore').val();
-        create(val);
+        create(val); // passa il valore come parametro alla funzione crea
     })
 
-    $(document).on('click','.modificaValore',function(){
-        let val=$('input.updateElement').val(); // il valore da passare 
-        let idElemento= $(this).parent().attr('data-id'); // mi ritorna l'id elemento selezionato
-        //console.log(idElemento,val)
-        update(idElemento,val)
+    $(document).on('click','.modificaValore',function(){ // al click preleva il valore dal campo di input assieme all'id
+        let val=$('input.updateElement').val();
+        let idElemento= $(this).parent().attr('data-id');
+        update(idElemento,val) // passa i due valori come parametro alla funzione
      });
     
 });
 
- // funzione update aggiorna // per aggiornare un elemento mi servirà l'id!
-function update(id,data){
-    $.ajax({
-        method: "PATCH",
-        url: "http://157.230.17.132:3015/todos/" + id,
-        data:{
-            text: data
-        },
-        success: function (response) {
-            $('.container').html('');
-            read();
-        },
-        error: function(errore){
-            console.log('errore ' + errore)
-        }
-    });
-} 
+
 
 // funzione read lettura
 function read(){
@@ -70,7 +53,7 @@ function create(data){
     });
 }
 
-// funzione delete elimina
+// funzione delete elimina //per eliminare un elemento mi servirà l'id!
 function deleteElement(id){
     $.ajax({
         method: "DELETE",
@@ -85,10 +68,10 @@ function deleteElement(id){
     });
 }
 
-/* // funzione update aggiorna // per aggiornare un elemento mi servirà l'id!
+// funzione update aggiorna //per aggiornare un elemento mi servirà l'id!
 function update(id,data){
     $.ajax({
-        method: "UPDATE",
+        method: "PATCH",
         url: "http://157.230.17.132:3015/todos/" + id,
         data:{
             text: data
@@ -101,10 +84,9 @@ function update(id,data){
             console.log('errore ' + errore)
         }
     });
-} */
+} 
 
-
-// funzione compila e stampa 
+// funzione compila e stampa elementi
 function handlebarsCompile(response){
     let source = document.getElementById("entry-template").innerHTML;
     let template = Handlebars.compile(source);
