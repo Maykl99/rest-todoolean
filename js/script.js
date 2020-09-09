@@ -11,13 +11,32 @@ $(function(){
         create(val);
     })
 
-    $('.modificaValore').on('click', function(){
-        let val=$('input.update').val();
-        console.log(val);
-        //Update(val);
-    })
+    $(document).on('click','.modificaValore',function(){
+        let val=$('input.updateElement').val(); // il valore da passare 
+        let idElemento= $(this).parent().attr('data-id'); // mi ritorna l'id elemento selezionato
+        //console.log(idElemento,val)
+        update(idElemento,val)
+     });
     
 });
+
+ // funzione update aggiorna // per aggiornare un elemento mi servirà l'id!
+function update(id,data){
+    $.ajax({
+        method: "PATCH",
+        url: "http://157.230.17.132:3015/todos/" + id,
+        data:{
+            text: data
+        },
+        success: function (response) {
+            $('.container').html('');
+            read();
+        },
+        error: function(errore){
+            console.log('errore ' + errore)
+        }
+    });
+} 
 
 // funzione read lettura
 function read(){
@@ -66,10 +85,14 @@ function deleteElement(id){
     });
 }
 
-function Update(id){
+/* // funzione update aggiorna // per aggiornare un elemento mi servirà l'id!
+function update(id,data){
     $.ajax({
         method: "UPDATE",
         url: "http://157.230.17.132:3015/todos/" + id,
+        data:{
+            text: data
+        },
         success: function (response) {
             $('.container').html('');
             read();
@@ -78,7 +101,7 @@ function Update(id){
             console.log('errore ' + errore)
         }
     });
-}
+} */
 
 
 // funzione compila e stampa 

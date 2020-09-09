@@ -11,6 +11,7 @@
 <body>
 
     <div class="container"></div>
+
     <input id="valore" type="text" placeholder="Inserisci un valore">
     <button id="passaggioValore">Click</button>
 
@@ -18,10 +19,10 @@
         <div class="entry">
           <div data-id="{{id}}">{{text}}
               <span class="delete">X</span>
-              <span>
-                  <input class="update" type="text" placeholder="Modifica Parametro">
+              <span class="update" data-id="{{id}}">
+                  <input class="updateElement" type="text" placeholder="Modifica Parametro">
                   <button class="modificaValore">Click</button>
-                </span>
+              </span>
           </div>
 
           
