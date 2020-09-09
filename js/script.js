@@ -12,7 +12,7 @@ $(function(){
     })
 
     $(document).on('click','.modificaValore',function(){ // al click preleva il valore dal campo di input assieme all'id
-        let val=$('input.updateElement').val();
+        let val= $(this).parent().find('input.updateElement').val();
         let idElemento= $(this).parent().attr('data-id');
         update(idElemento,val) // passa i due valori come parametro alla funzione
      });
