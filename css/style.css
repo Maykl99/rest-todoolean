@@ -7,10 +7,10 @@
 body{
     font-size: 20px;
     font-family: sans-serif;
-    background-color: rgb(167, 175, 175);
 }
 
-
-.input-group,.btn-primary{
-    margin-top: 20px;
+#valore,#passaggioValore{
+    padding: 8px 20px;
+    margin-top: 40px;
 }
+

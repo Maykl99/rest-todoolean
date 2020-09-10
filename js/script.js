@@ -43,7 +43,7 @@ function create(data){
         data:{
             text: data
         },
-        success: function(response){
+        success: function(){
             $('.container').html('');
             read();
         },
@@ -58,7 +58,7 @@ function deleteElement(id){
     $.ajax({
         method: "DELETE",
         url: "http://157.230.17.132:3015/todos/" + id,
-        success: function (response) {
+        success: function () {
             $('.container').html('');
             read();
         },
@@ -76,7 +76,7 @@ function update(id,data){
         data:{
             text: data
         },
-        success: function (response) {
+        success: function () {
             $('.container').html('');
             read();
         },
